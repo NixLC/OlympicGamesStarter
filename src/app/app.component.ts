@@ -1,6 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {delay, take, tap} from 'rxjs/operators';
-import { OlympicService } from './core/services/olympic.service';
+import {Component, OnInit} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 
 @Component({
@@ -14,11 +12,7 @@ import {RouterOutlet} from "@angular/router";
 })
 export class AppComponent implements OnInit {
   title: string = "olympic-games-starter" ;
-  olympicService: OlympicService = inject(OlympicService);
 
   ngOnInit(): void {
-    // this.olympicService.loadInitialData().pipe(take(1)).subscribe(
-    //   o => console.log('Into app components ' +o)
-    // );
   }
 }
