@@ -40,7 +40,7 @@ export class CountryDetailComponent {
   country$: Observable<{name: string, series:{name: string, value: number, extra:{city: string, athleteCount: number}}[]}[]> = this.olympicService.getOlympic(this.route.snapshot.params['country']).pipe(
     delay(0),
     takeUntilDestroyed(),
-    catchError((e: Error, caught) => {
+    catchError((e: Error) => {
       this.olympicService.clearErrors();
       this.goHome();
       return throwError(e);
