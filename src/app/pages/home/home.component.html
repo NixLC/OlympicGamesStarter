@@ -1,3 +1,23 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
+<div #containerRef class="pieChartContainer">
+  <app-status [loading$]="loading$" [error$]="dataRetrievalError$"></app-status>
+  <app-header [title]="title">
+    <div class="stats">
+      <app-stat-element elementTitle="Number of JOs" [elementValue]="olympicCount"></app-stat-element>
+      <app-stat-element elementTitle="Number of countries" [elementValue]="countryCount"></app-stat-element>
+    </div>
+  </app-header>
+  <ngx-charts-pie-chart
+    [view]="chartSize"
+    [results]="olympics$ | async"
+    [labels]="true"
+    [trimLabels]="false"
+    (select)="onSelect($event)"
+    (window:resize)="onResize()">
+  <ng-template #tooltipTemplate let-model="model">
+    <div class="custom-tooltip">
+      <span>{{ model.name }}</span>
+      <span><fa-icon [icon]="faAward"></fa-icon>{{ model.value | number }}</span>
+    </div>
+  </ng-template>
+  </ngx-charts-pie-chart>
+</div>

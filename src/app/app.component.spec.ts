@@ -1,16 +1,24 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import {HttpClientModule, provideHttpClient} from "@angular/common/http";
+import {provideRouter, RouterOutlet} from "@angular/router";
+import {HomeComponent} from "./pages/home/home.component";
+
 
 describe('AppComponent', () => {
+
   beforeEach(async () => {
+    let router = {navigate: jasmine.createSpy('navigate')};
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        AppComponent,
+        HttpClientModule,
+        RouterOutlet
       ],
-      declarations: [
-        AppComponent
-      ],
+      providers: [
+        provideHttpClient(),
+        provideRouter([{path: '', component: HomeComponent}])
+      ]
     }).compileComponents();
   });
 
@@ -30,6 +38,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('olympic-games-starter app is running!');
+    expect(compiled.querySelector('.footer span')?.textContent).toContain('olympic-games-starter app is running !');
   });
 });

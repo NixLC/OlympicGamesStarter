@@ -1,0 +1,7 @@
+<div class="status-loading-state" *ngIf="loading$ | async">
+  <p>Chargement des données...</p>
+</div>
+<div class="status-error" *ngIf="error$ | async as e">
+  <p>{{ e.msg }} :</p>
+  <p>{{ e.details.message }}</p>
+</div>

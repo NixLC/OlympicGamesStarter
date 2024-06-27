@@ -1,0 +1,34 @@
+<div #containerRef class="lineChartContainer">
+  <app-status [loading$]="loading$" [error$]="dataRetrievalError$"></app-status>
+  <app-header [title]="title">
+    <div class="stats">
+      <app-stat-element elementTitle="Participations" [elementValue]="entriesCount"></app-stat-element>
+      <app-stat-element elementTitle="Total medals" [elementValue]="medalsCount"></app-stat-element>
+      <app-stat-element elementTitle="Total athletes" [elementValue]="athletesCount"></app-stat-element>
+    </div>
+  </app-header>
+<ngx-charts-line-chart
+  [view]="chartSize"
+  [results]="country$ | async"
+  [xAxis]="true"
+  [yAxis]="true"
+  [showXAxisLabel]="true"
+  [showYAxisLabel]="true"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [yAxisTickFormatting]="yAxisTickFormattingFn"
+  [autoScale]="true"
+  (select)="onSelect($event)"
+  (window:resize)="onResize()">
+  <ng-template #tooltipTemplate let-model="model">
+    <div class="custom-tooltip">
+      <span>{{ model.extra.city }}</span>
+      <span>{{ model.name }}</span>
+      <span><fa-icon [icon]="faRunning"></fa-icon>{{ model.extra.athleteCount | number }}</span>
+      <span><fa-icon [icon]="faAward"></fa-icon>{{ model.value | number }}</span>
+      <span></span>
+    </div>
+  </ng-template>
+</ngx-charts-line-chart>
+  <button (click)="goHome()">Retour</button>
+</div>
