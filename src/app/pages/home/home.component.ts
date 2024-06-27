@@ -4,7 +4,7 @@ import {OlympicService} from "../../core/services/olympic.service";
 import {interval, Observable} from "rxjs";
 import {delay, filter, map, take, tap} from "rxjs/operators";
 import {Participation} from "../../core/models/Participation";
-import {FaIconComponent, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {faAward, IconDefinition} from "@fortawesome/free-solid-svg-icons";
 import {Router} from "@angular/router";
 import {Olympic} from "../../core/models/Olympic";
