@@ -28,7 +28,7 @@ export class OlympicService {
           this._loading$.next(false);
         }
       ),
-      catchError((error, caught) => {
+      catchError((error) => {
         this._olympics$.next([]);
         this._loading$.next(false);
         return throwError({msg: "An error occurred during data retrieval", details: error});
