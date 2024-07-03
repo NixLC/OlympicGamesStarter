@@ -1,4 +1,11 @@
 <div class="center">
+  @if (errors){
+  <div>
+    <h4>{{ errors }}</h4>
+  </div>
+  }
+  @else {
   <h2>No corresponding page found</h2>
-  <a routerLink="">Go back</a>
+  }
+  <a routerLink="">Home</a>
 </div>

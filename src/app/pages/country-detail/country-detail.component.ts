@@ -1,7 +1,7 @@
 import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {OlympicService} from "../../core/services/olympic.service";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 import {Observable, throwError} from "rxjs";
 import {Olympic} from "../../core/models/Olympic";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
@@ -41,8 +41,8 @@ export class CountryDetailComponent {
     delay(0),
     takeUntilDestroyed(),
     catchError((e: Error) => {
+      this.go404({state: { error: e.message}});
       this.olympicService.clearErrors();
-      this.goHome();
       return throwError(e);
     }),
     filter((o:Olympic) => o !== undefined),
@@ -77,7 +77,11 @@ export class CountryDetailComponent {
     console.log(event);
   }
 
-  goHome() {
+  go404(extras: NavigationExtras): void {
+    this.router.navigateByUrl('notfound', extras);
+  }
+
+  goHome(): void {
     this.router.navigateByUrl('').then();
   }
 
