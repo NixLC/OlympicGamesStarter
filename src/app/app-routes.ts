@@ -14,7 +14,11 @@ export const routes: Routes = [
     component: CountryDetailComponent
   },
   {
+    path: 'notfound',
+    component: NotFoundComponent
+  },
+  {
     path: '**', // wildcard
-    component: NotFoundComponent,
+    redirectTo: '/notfound',
   }
 ];
