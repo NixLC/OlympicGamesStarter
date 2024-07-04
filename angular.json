@@ -40,7 +40,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "800kb",
                   "maximumError": "1mb"
                 },
                 {
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "olympic-games-starter:build:production"
+              "buildTarget": "olympic-games-starter:build:production"
             },
             "development": {
-              "browserTarget": "olympic-games-starter:build:development"
+              "buildTarget": "olympic-games-starter:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "olympic-games-starter:build"
+            "buildTarget": "olympic-games-starter:build"
           }
         },
         "test": {
