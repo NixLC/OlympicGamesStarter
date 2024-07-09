@@ -1,4 +1,4 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {inject, Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
 import {catchError, delay, filter, map, shareReplay, switchMap, tap} from 'rxjs/operators';
@@ -71,15 +71,9 @@ export class OlympicService {
     const filterOlympicsByCountry = (o: Olympic) => o.country === countryName;
     return this.olympics$.pipe(
       map((olympics: Olympic[]) => olympics.filter(filterOlympicsByCountry)[0]),
-      tap((olympic: Olympic) => {
-        if(olympic === undefined) {
-          const e: Error = Error(`Unable to find Olympic country '${countryName}'`);
-          this._errors$.next({msg: `No data for ${countryName}`, details: e});
-        }
-      }),
       switchMap((olympic: Olympic) => {
         if (!olympic) {
-          const e = new Error(`Unable to find olympic country '${countryName}'`);
+          const e = new Error(`Unable to find country named '${countryName}'`);
           return throwError(e);
         }
         else {
@@ -89,7 +83,7 @@ export class OlympicService {
       shareReplay(1),
       catchError(e => {
         // Rethrow the error so it can be caught by subscribers
-        return throwError(new Error(`Error fetching data for ${countryName}: ${e.message}`));
+        return throwError(new Error(`Error fetching data : ${e.message}`));
       })
     );
   }
