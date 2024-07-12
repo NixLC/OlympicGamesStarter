@@ -1,8 +1,9 @@
 <div #containerRef class="pieChartContainer">
   <app-status [loading$]="loading$" [error$]="dataRetrievalError$"></app-status>
+  <div *ngIf="!(dataRetrievalError$ | async)">
   <app-header [title]="title">
     <div class="stats">
-      <app-stat-element elementTitle="Number of JOs" [elementValue]="olympicCount"></app-stat-element>
+      <app-stat-element elementTitle="Number of OGs" [elementValue]="olympicCount"></app-stat-element>
       <app-stat-element elementTitle="Number of countries" [elementValue]="countryCount"></app-stat-element>
     </div>
   </app-header>
@@ -20,4 +21,5 @@
     </div>
   </ng-template>
   </ngx-charts-pie-chart>
+</div>
 </div>
