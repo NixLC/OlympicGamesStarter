@@ -29,7 +29,7 @@
   padding: 0.8em;
   border-radius: 5px;
   pointer-events: none;
-  background-color: rgba(0,0,0,.75);
+  background-color: #04828e;;
   z-index: 10;
   bottom: 0;
   transform: translateX(-50%);
@@ -41,4 +41,18 @@
   display: flex;
   justify-content: center;
   gap: 0.2em;
+}
+
+.ngx-charts-tooltip-content.type-tooltip span.tooltip-caret.position-top {
+  display: block;
+  width: 2em;
+  height: 2em;
+  background-color: #04828e;
+  border: inherit;
+  position: absolute;
+  top: calc(50% - 1em) !important;
+  left: calc(50% - 1em) !important;
+  clip-path: polygon(20% 0%, 100% 80%, 0% 100%);
+  transform: rotate(-45deg);
+  border-radius: 0 0 0 0.6em;
 }
