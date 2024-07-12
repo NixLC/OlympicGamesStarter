@@ -1,7 +1,11 @@
 <div class="center">
-  @if (errors){
-  <div>
-    <h4>{{ errors }}</h4>
+  @if (error) {
+  <div class="error-box">
+    <h4>{{ error.friendly }}</h4>
+    <button (click)="showErrorDetail()">Show details</button>
+    @if (showDetails) {
+    <div>{{ error.detail }}</div>
+    }
   </div>
   }
   @else {

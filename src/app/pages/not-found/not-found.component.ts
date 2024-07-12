@@ -13,9 +13,14 @@ import {StatusComponent} from "../../core/templates/status/status.component";
   ]
 })
 export class NotFoundComponent implements OnInit {
-  errors!: string;
+  error!: {friendly: string, detail: string};
+  showDetails: boolean = false;
 
   ngOnInit(): void {
-    this.errors = history.state['error'];
+    this.error = history.state['error'];
+  }
+
+  public showErrorDetail() {
+    this.showDetails = !this.showDetails;
   }
 }

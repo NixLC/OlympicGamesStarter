@@ -73,7 +73,7 @@ export class OlympicService {
       map((olympics: Olympic[]) => olympics.filter(filterOlympicsByCountry)[0]),
       switchMap((olympic: Olympic) => {
         if (!olympic) {
-          const e = new Error(`Unable to find country named '${countryName}'`);
+          const e = new Error(`No data found for country '${countryName}'`);
           return throwError(e);
         }
         else {

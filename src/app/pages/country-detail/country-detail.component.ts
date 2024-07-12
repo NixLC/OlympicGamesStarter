@@ -41,7 +41,7 @@ export class CountryDetailComponent {
     delay(0),
     takeUntilDestroyed(),
     catchError((e: Error) => {
-      this.go404({state: { error: e.message}});
+      this.go404({state: { error: {friendly: "Oups, something went wrong", detail: e.message}}});
       this.olympicService.clearErrors();
       return throwError(e);
     }),
